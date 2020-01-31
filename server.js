@@ -6,8 +6,6 @@ const MongoClient = require('mongodb').MongoClient
 
 const uri = 'mongodb+srv://pedrao:tecnologiamongodb@cluster0-5ftnz.mongodb.net/test?retryWrites=true&w=majority'
 
-app.use(bodyParser.urlencoded({ extended: true })) // urlencoded informa ao body-parser que é para extarir os dados do elemento do formulário
-
 MongoClient.connect(uri, (err, client) => {
     if(err) {
         return console.log(err);
@@ -20,10 +18,26 @@ MongoClient.connect(uri, (err, client) => {
     })
 })
 
+app.use(bodyParser.urlencoded({ extended: true })) // urlencoded informa ao body-parser que é para extarir os dados do elemento do formulário
+
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
     res.render('index.ejs')
+})
+
+app.get('/', (req, res) => {
+    let cursor = db.collection('data').find()
+})
+
+app.get('/show', (req, res) => {
+    db.collection('data').find().toArray((err, results) => {
+        if(err) {
+            return console.log(err)
+        }
+        res.render('show.ejs', { data: results })
+
+    })
 })
 
 app.post('/show', (req, res) => {
@@ -32,13 +46,38 @@ app.post('/show', (req, res) => {
             return console.log(err);
         }
         console.log('Salvo no banco de dados');
-        res.redirect('/')
-        db.collection('data').find().toArray((err, results) => {
-            console.log(results)
-        })
+        res.redirect('/show')
+
     })
 })
 
-app.get('/', (req, res) => {
-    let cursor = db.collection('data').find()
+app.route('/edit/:id')
+.get((req, res) => {
+    let id = req.params.id
+    let ObjectId = require('mongodb').ObjectID
+
+    db.collection('data').find(ObjectId(id)).toArray((err, result) => {
+        if(err) {
+            return res.send(err)
+        }
+        res.render('edit.ejs', {data: result})
+    })
+}).post((req, res) => {
+    let  id = req.params.id;
+    let nome = req.body.nome;
+    let sobrenome = req.body.sobrenome;
+    let ObjectId = require('mongodb').ObjectID
+
+    db.collection('data').updateOne({_id: ObjectId(id)}, {
+        $set: {
+            nome: nome,
+            sobrenome: sobrenome
+        }
+    }, (err, result) => {
+        if(err) {
+            return res.send(err);
+        }
+        res.redirect('/show')
+        console.log('Atualizando banco de dados!!')
+    })
 })
