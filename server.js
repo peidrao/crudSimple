@@ -2,16 +2,16 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser')
 const PORT = 8080;
-const MongoClient = require('mongodb').MongoClient 
+const MongoClient = require('mongodb').MongoClient
 
 const uri = 'mongodb+srv://pedrao:tecnologiamongodb@cluster0-5ftnz.mongodb.net/test?retryWrites=true&w=majority'
 
 MongoClient.connect(uri, (err, client) => {
-    if(err) {
+    if (err) {
         return console.log(err);
     }
     //useUnifiedTopology: true
-    
+
     db = client.db('Cluster0')
     app.listen(PORT, () => {
         console.log(`Servidor rodando na porta: ${PORT}`)
@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 
 app.get('/show', (req, res) => {
     db.collection('data').find().toArray((err, results) => {
-        if(err) {
+        if (err) {
             return console.log(err)
         }
         res.render('show.ejs', { data: results })
@@ -42,7 +42,7 @@ app.get('/show', (req, res) => {
 
 app.post('/show', (req, res) => {
     db.collection('data').save(req.body, (err, result) => {
-        if(err) {
+        if (err) {
             return console.log(err);
         }
         console.log('Salvo no banco de dados');
@@ -52,32 +52,44 @@ app.post('/show', (req, res) => {
 })
 
 app.route('/edit/:id')
-.get((req, res) => {
-    let id = req.params.id
-    let ObjectId = require('mongodb').ObjectID
+    .get((req, res) => {
+        let id = req.params.id
+        let ObjectId = require('mongodb').ObjectID
 
-    db.collection('data').find(ObjectId(id)).toArray((err, result) => {
-        if(err) {
-            return res.send(err)
-        }
-        res.render('edit.ejs', {data: result})
-    })
-}).post((req, res) => {
-    let  id = req.params.id;
-    let nome = req.body.nome;
-    let sobrenome = req.body.sobrenome;
-    let ObjectId = require('mongodb').ObjectID
+        db.collection('data').find(ObjectId(id)).toArray((err, result) => {
+            if (err) {
+                return res.send(err)
+            }
+            res.render('edit.ejs', { data: result })
+        })
+    }).post((req, res) => {
+        let id = req.params.id;
+        let nome = req.body.nome;
+        let sobrenome = req.body.sobrenome;
+        let ObjectId = require('mongodb').ObjectID
 
-    db.collection('data').updateOne({_id: ObjectId(id)}, {
-        $set: {
-            nome: nome,
-            sobrenome: sobrenome
-        }
-    }, (err, result) => {
-        if(err) {
-            return res.send(err);
-        }
-        res.redirect('/show')
-        console.log('Atualizando banco de dados!!')
+        db.collection('data').updateOne({ _id: ObjectId(id) }, {
+            $set: {
+                nome: nome,
+                sobrenome: sobrenome
+            }
+        }, (err, result) => {
+            if (err) {
+                return res.send(err);
+            }
+            res.redirect('/')
+            console.log('Atualizando banco de dados!!')
+        })
     })
-})
+
+app.route('/remove/:id')
+    .get((req, res) => {
+        let id = req.params.id
+        let ObjectId = require('mongodb').ObjectID;
+
+        db.collection('data').deleteOne({ _id: ObjectId(id) }, (err, result) => {
+            if (err) { return res.send(500, err) }
+            console.log('Deletado do Banco de Dados!')
+            res.redirect('/show')
+        })
+    })
