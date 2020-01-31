@@ -5,4 +5,7 @@ CRUD (Created, Read, Update, Delete)
 * Express: construção de aplicações web para Node.js
 * MongoDB: Banco de dados não relacional.
 * CRUD: POST, GET, PUT, DELETE.
-    * teste
+    * POST: Criar (Inserir algum valor no banco de dados)
+    * GET: Ler (Selecionar valores para exibição)
+    * PUT: Atualizar (Alterar alguma informação)
+    * DELETE: Remover 
