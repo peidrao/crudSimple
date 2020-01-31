@@ -1,22 +1,52 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>CRUD em JS</title>
 </head>
+
 <body>
     <h2>Registro</h2>
     <form action="/show" method="POST">
-    <input type="text" placeholder="Nome" name="nome">
-    <input type="text" placeholder="Sobrenome" name="sobrenome">
-    <select name="sexo" id="" >
-        <option value="">--Escolha seu sexo--</option>
-        <option value="homem">Homem</option>
-        <option value="mulher">Mulher</option>
-    </select>
-    <button type="submit">Enviar</button>
+        <input type="text" placeholder="Nome" name="nome">
+        <input type="text" placeholder="Sobrenome" name="sobrenome">
+        <select name="sexo" id="">
+            <option value="">--Escolha seu sexo--</option>
+            <option value="homem">Homem</option>
+            <option value="mulher">Mulher</option>
+        </select>
+        <button type="submit">Enviar</button>
     </form>
+
+
+    <style>
+        body {
+            background-color: #F2EEE0;
+            padding: 20px;
+        }
+
+        input {
+            margin-top: 15px;
+            border: 1px solid rgb(59, 6, 6)
+        }
+
+        button {
+            background-color: blueviolet;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 2.5rem;
+        }
+        button:hover {
+            background-color: rgb(255, 149, 123);
+            color: #000;
+        }
+    </style>
+
 </body>
+
+
 </html>

@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const PORT = 8080;
 const MongoClient = require('mongodb').MongoClient
 //pedrao
-const uri = 'mongodb+srv://<>:<>@cluster0-5ftnz.mongodb.net/test?retryWrites=true&w=majority'
+const uri = 'mongodb+srv://pedrao:tecnologiamongodb@cluster0-5ftnz.mongodb.net/test?retryWrites=true&w=majority'
 
 MongoClient.connect(uri, {
     useUnifiedTopology: true
@@ -21,7 +21,7 @@ MongoClient.connect(uri, {
 })
 
 app.use(bodyParser.urlencoded({ extended: true })) // urlencoded informa ao body-parser que é para extarir os dados do elemento do formulário
-
+app.use(express.static(__dirname + '/styles'));
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
