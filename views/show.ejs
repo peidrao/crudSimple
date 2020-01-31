@@ -1,39 +1,76 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-  <meta charset="UTF-8">
-  <title>CRUD em JS</title>
+    <meta charset="UTF-8">
+    <title>CRUD em JS</title>
 </head>
+
 <body>
+    <h2>Registros<h2>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Nome</td>
+                        <td>Sobrenome</td>
+                        <td>Sexo</td>
+                        <td>Opção</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach(function(details) { %>
+                    <tr>
+                        <td><%= details.nome %></td>
+                        <td><%= details.sobrenome %></td>
+                        <td><%= details.sexo %></td>
+                        <td >
+                            <a class="editar" href="/edit/<%=details._id%>">Editar</a>
+                            <a href="/remove/<%=details._id%>">Remover</a>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+                <button><a href="/">Novo</a></button>
 
-<h2>Registros<h2>
-    <table border="1">
-        <thead>
-            <tr>
-                <td>Nome</td>
-                <td>Sobrenome</td>
-                <td>Sexo</td>
-                <td>Opção</td>
-            </tr>
-        </thead>
-        <tbody>
-        <% data.forEach(function(details) { %>
-            <tr>
-                <td><%= details.nome %></td>
-                <td><%= details.sobrenome %></td>
-                <td><%= details.sexo %></td>
-                <td>
-                    <a href="/edit/<%=details._id%>">Editar</a>
-                    <a href="/remove/<%=details._id%>">Remover</a>
-                </td>
-            </tr>
-            <% }) %>
-        </tbody>
-        <button><a href="/">Novo</a></button>
 
+                <style>
+                    body {
+                        padding: 20px;
+                    }
 
-        <style>
-        </style>
+                    table {
+                        border-collapse: collapse;
+                        width: 50em;
+                        border: 1px solid #666;
+                    }
+
+                    thead {
+                        background: #ccc url(https://www.devfuria.com.br/html-css/tabelas/bar.gif) repeat-x left center;
+                        border-top: 1px solid #a5a5a5;
+                        border-bottom: 1px solid #a5a5a5;
+                    }
+
+                    tr:hover {
+                        background-color: #3d80df;
+                        color: #fff;
+                    }
+
+                    thead tr:hover {
+                        background-color: transparent;
+                        color: inherit;
+                    }
+
+                    th {
+                        font-weight: normal;
+                        text-align: left;
+                    }
+
+                    th,
+                    td {
+                        padding: 0.1em 1em;
+                    }
+                </style>
 
 </body>
+
 </html>
