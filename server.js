@@ -3,8 +3,8 @@ const app = express();
 const bodyParser = require('body-parser')
 const PORT = 8080;
 const MongoClient = require('mongodb').MongoClient
-
-const uri = 'mongodb+srv://pedrao:tecnologiamongodb@cluster0-5ftnz.mongodb.net/test?retryWrites=true&w=majority'
+//pedrao
+const uri = 'mongodb+srv://<user>:<senha>@cluster0-5ftnz.mongodb.net/test?retryWrites=true&w=majority'
 
 MongoClient.connect(uri, (err, client) => {
     if (err) {
