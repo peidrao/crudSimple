@@ -4,9 +4,11 @@ const bodyParser = require('body-parser')
 const PORT = 8080;
 const MongoClient = require('mongodb').MongoClient
 //pedrao
-const uri = 'mongodb+srv://<user>:<senha>@cluster0-5ftnz.mongodb.net/test?retryWrites=true&w=majority'
+const uri = 'mongodb+srv://<>:<>@cluster0-5ftnz.mongodb.net/test?retryWrites=true&w=majority'
 
-MongoClient.connect(uri, (err, client) => {
+MongoClient.connect(uri, {
+    useUnifiedTopology: true
+}, (err, client) => {
     if (err) {
         return console.log(err);
     }
@@ -66,12 +68,14 @@ app.route('/edit/:id')
         let id = req.params.id;
         let nome = req.body.nome;
         let sobrenome = req.body.sobrenome;
+        let sexo = req.body.sexo
         let ObjectId = require('mongodb').ObjectID
 
         db.collection('data').updateOne({ _id: ObjectId(id) }, {
             $set: {
                 nome: nome,
-                sobrenome: sobrenome
+                sobrenome: sobrenome,
+                sexo: sexo
             }
         }, (err, result) => {
             if (err) {
