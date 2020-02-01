@@ -27,10 +27,10 @@
                                 <td><%= details.nome %></td>
                                 <td><%= details.sobrenome %></td>
                                 <td><%= details.sexo %></td>
-                                <td>
+                                <td class="opcoes">
                                     <div class="row">
                                         <a class="editar" href="/edit/<%=details._id%>">Editar</a> |
-                                        <a href="/remove/<%=details._id%>">Remover</a>
+                                        <a  class="remover" href="/remove/<%=details._id%>">Remover</a>
                                     </div>
                                 </td>
                             </tr>
@@ -39,7 +39,7 @@
 
         </div>
         <div style="text-align: right;"> 
-            <button type="submit">
+            <button type="submit" class="btn btn-danger">
                 <a class="text-white" href="/">Novo</a>
             </button></div>
     </div>
@@ -53,28 +53,25 @@
             font-size: 1.5rem;
         }
 
-        tbody:hover {
-            background: #E5E6F0;
+        tr:hover {
+            background: #dc3545 ;
+            color: #fff;
         }
 
         button {
+            font-size: 1.5rem!important ;
+            margin-bottom: 5px ;
+        }
 
-            background-color: #8e4dff;
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
+        .editar{
             text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin-bottom: 5px;
+            color: rgb(10, 187, 84);
         }
 
-        button:hover {
-            background-color: #752bf5;
-            border: 2px solid rgb(0, 0, 0);
-            /* Green */
+        .remover {
+            color: #4b1fc4;
         }
+
     </style>
 
 </body>
