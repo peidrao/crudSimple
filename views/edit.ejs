@@ -6,24 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>CRUD em JS</title>
 </head>
 
 <body>
-    <h2>Editar Registros</h2>
-    <% data.forEach((details)=> { %>
-    <form action="/edit/<%=details._id%>" method="POST">
-        <input type="text" value="<%=details.nome%>" name="nome">
-        <input type="text" value="<%=details.sobrenome%>" name="sobrenome">
-        <input type="text" value="<%=details.sexo%>" name="sexo">
-
-        </select>
-        <br />
-        <button> <a href="/show"> Todos</a></button>
-        <button type="submit"> Editar</button>
-    </form>
-    <% }) %>
+    <div class="container">
+        <div class="col-md-12">
+            <h1>Editar Registros</h1>
+            <% data.forEach((details)=> { %>
+            <form action="/edit/<%=details._id%>" method="POST">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label>Nome</label>
+                        <input class="form-control" type="text" value="<%=details.nome%>" name="nome">
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Sobrenome</label>
+                        <input class="form-control" type="text" value="<%=details.sobrenome%>" name="sobrenome">
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Sexo</label>
+                        <input class="form-control" type="text" value="<%=details.sexo%>" name="sexo">
+                    </div>
+                </div>
+                </select>
+                <br />
+              <div> 
+                <button class="btn btn-danger"> <a class="text-white" href="/show"> Todos registros</a></button>
+                <button type="submit" class="btn btn-outline-danger"> Editar</button>
+              </div>
+            </form>
+            <% }) %>
+        </div>
+    </div>
 </body>
 
 </html>
