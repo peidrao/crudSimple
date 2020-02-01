@@ -12,8 +12,6 @@ MongoClient.connect(uri, {
     if (err) {
         return console.log(err);
     }
-    //useUnifiedTopology: true
-
     db = client.db('Cluster0')
     app.listen(PORT, () => {
         console.log(`Servidor rodando na porta: ${PORT}`)
@@ -81,7 +79,7 @@ app.route('/edit/:id')
             if (err) {
                 return res.send(err);
             }
-            res.redirect('/')
+            res.redirect('/show')
             console.log('Atualizando banco de dados!!')
         })
     })

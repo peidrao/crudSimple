@@ -2,6 +2,8 @@
 <html lang="pt-br">
 
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -10,41 +12,32 @@
 </head>
 
 <body>
-    <h2>Registro</h2>
-    <form action="/show" method="POST">
-        <input type="text" placeholder="Nome" name="nome">
-        <input type="text" placeholder="Sobrenome" name="sobrenome">
-        <select name="sexo" id="">
-            <option value="">--Escolha seu sexo--</option>
-            <option value="homem">Homem</option>
-            <option value="mulher">Mulher</option>
-        </select>
-        <button type="submit">Enviar</button>
-    </form>
-
-
-    <style>
-        body {
-            background-color: #F2EEE0;
-            padding: 20px;
-        }
-
-        input {
-            margin-top: 15px;
-            border: 1px solid rgb(59, 6, 6)
-        }
-
-        button {
-            background-color: blueviolet;
-            border-radius: 5px;
-            color: #fff;
-            font-size: 2.5rem;
-        }
-        button:hover {
-            background-color: rgb(255, 149, 123);
-            color: #000;
-        }
-    </style>
+    
+    <div class="container">
+        <div class="col-sm-6">
+            <h1>Formulário de registros</h1>
+            <form action="/show" method="POST">
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" name="nome" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Sobrenome</label>
+                    <input type="text" name="sobrenome" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Selecione o sexo</label>
+                    <select name="sexo">
+                        <option value="Homem">Homem</option>
+                        <option value="Mulher">Mulher</option>
+                    </select>
+                </div>
+               <div style="text-align: right;">
+                <button type="submit" class="btn btn-outline-danger">Enviar</button>
+               </div>
+            </form>
+        </div>
+    </div>
 
 </body>
 

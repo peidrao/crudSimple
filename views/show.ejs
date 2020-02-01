@@ -2,74 +2,80 @@
 <html lang="pt-br">
 
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>CRUD em JS</title>
 </head>
 
 <body>
-    <h2>Registros<h2>
-            <table>
-                <thead>
-                    <tr>
-                        <td>Nome</td>
-                        <td>Sobrenome</td>
-                        <td>Sexo</td>
-                        <td>Opção</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% data.forEach(function(details) { %>
-                    <tr>
-                        <td><%= details.nome %></td>
-                        <td><%= details.sobrenome %></td>
-                        <td><%= details.sexo %></td>
-                        <td >
-                            <a class="editar" href="/edit/<%=details._id%>">Editar</a>
-                            <a href="/remove/<%=details._id%>">Remover</a>
-                        </td>
-                    </tr>
-                    <% }) %>
-                </tbody>
-                <button><a href="/">Novo</a></button>
+    <div class="container">
+        <div class="col-md-8">
+            <h1>Registros<h2>
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Nome</td scope="col">
+                                <th scope="col">Sobrenome</th'>
+                                <th scope="col">Sexo</th>
+                                <th scope="col">Opção</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% data.forEach(function(details) { %>
+                            <tr>
+                                <td><%= details.nome %></td>
+                                <td><%= details.sobrenome %></td>
+                                <td><%= details.sexo %></td>
+                                <td>
+                                    <div class="row">
+                                        <a class="editar" href="/edit/<%=details._id%>">Editar</a> |
+                                        <a href="/remove/<%=details._id%>">Remover</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
 
+        </div>
+        <div style="text-align: right;"> 
+            <button type="submit">
+                <a class="text-white" href="/">Novo</a>
+            </button></div>
+    </div>
 
-                <style>
-                    body {
-                        padding: 20px;
-                    }
+    <style>
+        body {
+            background-color: #E5E6F0;
+        }
 
-                    table {
-                        border-collapse: collapse;
-                        width: 50em;
-                        border: 1px solid #666;
-                    }
+        tr {
+            font-size: 1.5rem;
+        }
 
-                    thead {
-                        background: #ccc url(https://www.devfuria.com.br/html-css/tabelas/bar.gif) repeat-x left center;
-                        border-top: 1px solid #a5a5a5;
-                        border-bottom: 1px solid #a5a5a5;
-                    }
+        tbody:hover {
+            background: #E5E6F0;
+        }
 
-                    tr:hover {
-                        background-color: #3d80df;
-                        color: #fff;
-                    }
+        button {
 
-                    thead tr:hover {
-                        background-color: transparent;
-                        color: inherit;
-                    }
+            background-color: #8e4dff;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
 
-                    th {
-                        font-weight: normal;
-                        text-align: left;
-                    }
-
-                    th,
-                    td {
-                        padding: 0.1em 1em;
-                    }
-                </style>
+        button:hover {
+            background-color: #752bf5;
+            border: 2px solid rgb(0, 0, 0);
+            /* Green */
+        }
+    </style>
 
 </body>
 
